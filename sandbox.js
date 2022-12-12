@@ -1,7 +1,8 @@
-var character = "luigi";
-console.log(character);
-var inputs = document.querySelectorAll("input");
-console.log(inputs);
-inputs.forEach(function (input) {
-    console.log(input);
-});
+var character = "mario";
+var age = 30;
+var isBlackBelt = false;
+character = "luigi";
+var circumference = function (diameter) {
+    return diameter * Math.PI;
+};
+console.log(circumference(7.5));

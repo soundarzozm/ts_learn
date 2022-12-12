@@ -1,9 +1,11 @@
-const character = "luigi";
-console.log(character);
+let character = "mario";
+let age = 30;
+let isBlackBelt = false;
 
-const inputs = document.querySelectorAll("input");
-console.log(inputs);
+character = "luigi";
 
-inputs.forEach((input) => {
-  console.log(input);
-});
+const circumference = (diameter: number) => {
+  return diameter * Math.PI;
+};
+
+console.log(circumference(7.5));
