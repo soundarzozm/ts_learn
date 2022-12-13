@@ -1,34 +1,34 @@
-// ARRAYS
-let names = ["luigi", "mario", "yoshi"];
+// explicit
+let character: string;
 
-names.push("toad");
+// arrays
+let ninjas: string[];
 
-names.push(3);
-names[0] = 3;
+// union types
+let mixed: (string | number | boolean)[] = [];
+mixed.push("hello");
+mixed.push(20);
+mixed.push(false);
 
-let mixed = ["ken", 4, "chun-li", 8, 9, true];
+let mixedVariable: string | number;
+mixedVariable = 20;
 
-mixed.push("ryu");
-mixed.push(10);
-mixed[0] = 3;
-
-// OBJECTS
-let ninja = {
-  name: "mario",
-  belt: "black",
+// objects
+let ninjaOne: object;
+ninjaOne = {
+  name: "yoshi",
   age: 30,
 };
+ninjaOne = []; // array is also an object (of sorts)
 
-ninja.age = 40;
-ninja.name = "ryu";
+let ninjaTwo: {
+  name: string;
+  age: number;
+  belt: string;
+};
 
-ninja.age = "30"; // same as variables
-
-ninja.skills = ["fighting", "sneaking"]; // cannot add properties
-
-ninja = {
-  name: "yoshi",
-  belt: "orange",
-  //   age: 40,
-  //   skills: []
+ninjaTwo = {
+  name: "mario",
+  age: 20,
+  belt: "black",
 };
