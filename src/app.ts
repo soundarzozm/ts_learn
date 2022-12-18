@@ -1,14 +1,23 @@
 // classes
 class Invoice {
-	client: string
-	details: string
-	amount: number
+	// Public is default
+	// readonly client: string
+	// private details: string
+	// public amount: number
 
-	constructor(c: string, d: string, a: number) {
-		this.client = c
-		this.details = d
-		this.amount = a
-	}
+	// constructor(c: string, d: string, a: number) {
+	// 	this.client = c
+	// 	this.details = d
+	// 	this.amount = a
+	// }
+
+	// Quick way to do all this
+	constructor(
+		// Modifiers are compulsory for this
+		readonly client: string,
+		private details: string,
+		public amount: number
+	) {}
 
 	format() {
 		return `${this.client} owes $${this.amount} for ${this.details}`
@@ -22,21 +31,16 @@ let invoices: Invoice[] = []
 invoices.push(invOne)
 invoices.push(invTwo)
 
-invOne.client = 'yoshi'
+// Read-only so not changeable
+// invOne.client = 'yoshi'
 invTwo.amount = 400
 
-console.log(invoices)
+invoices.forEach((inv) => {
+	console.log(inv.format())
 
-const form = document.querySelector('.new-item-form') as HTMLFormElement
-// console.log(form.children)
+	// Private so inaccessible
+	// console.log(inv.details)
 
-// inputs
-const type = document.querySelector('#type') as HTMLSelectElement
-const toFrom = document.querySelector('#tofrom') as HTMLInputElement
-const details = document.querySelector('#details') as HTMLInputElement
-const amount = document.querySelector('#amount') as HTMLInputElement
-
-form.addEventListener('submit', (e: Event) => {
-	e.preventDefault()
-	console.log(type.value, toFrom.value, details.value, amount.value)
+	// Readable
+	console.log(inv.client)
 })
