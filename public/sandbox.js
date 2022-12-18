@@ -1,15 +1,21 @@
 "use strict";
+// This is function signature
 let greet;
-greet = () => {
-    console.log('hello, again');
+// This is actual function definition
+// Note that the parameter names are different (but the types should be matching)
+greet = (name, greeting) => {
+    console.log(`${name}: ${greeting}`);
 };
-const add = (a, b, c = 10, d) => {
-    console.log(a + b);
-    console.log(c);
-    console.log(d);
+let calc;
+calc = (numOne, numTwo, action) => {
+    if (action === 'add') {
+        return numOne + numTwo;
+    }
+    else {
+        return numOne - numTwo;
+    }
 };
-add(5, 10);
-const minus = (a, b) => {
-    return a - b;
+let logDetails;
+logDetails = (ninja) => {
+    console.log(`${ninja.name} is ${ninja.age} years old`);
 };
-let result = minus(10, 7);

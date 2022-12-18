@@ -1,24 +1,22 @@
-let greet: Function
+// This is function signature
+let greet: (a: string, b: string) => void
 
-greet = () => {
-	console.log('hello, again')
+// This is actual function definition
+// Note that the parameter names are different (but the types should be matching)
+greet = (name: string, greeting: string): void => {
+	console.log(`${name}: ${greeting}`)
 }
 
-const add = (
-	a: number,
-	b: number,
-	c: number | string = 10,
-	d?: number | string
-) => {
-	console.log(a + b)
-	console.log(c)
-	console.log(d)
+let calc: (a: number, b: number, c: string) => number
+calc = (numOne: number, numTwo: number, action: string): number => {
+	if (action === 'add') {
+		return numOne + numTwo
+	} else {
+		return numOne - numTwo
+	}
 }
 
-add(5, 10)
-
-const minus = (a: number, b: number): number => {
-	return a - b
+let logDetails: (obj: { name: string; age: number }) => void
+logDetails = (ninja: { name: string; age: number }) => {
+	console.log(`${ninja.name} is ${ninja.age} years old`)
 }
-
-let result = minus(10, 7)
