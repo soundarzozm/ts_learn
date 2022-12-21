@@ -11,15 +11,24 @@ console.log(docOne.name)
 // <T extends object> solves this.
 // let docTwo = addUID('hello')
 
+enum resourceType {
+	BOOK,
+	AUTHOR,
+	FILM,
+	ARTIST,
+}
+
 interface Resource<T> {
 	uid: number
 	resourceName: string
+	resourceType: resourceType
 	data: T // This can be any datatype
 }
 
 const docThree: Resource<object> = {
 	uid: 1,
 	resourceName: 'person',
+	resourceType: resourceType.BOOK,
 	data: {
 		name: 'shaun',
 	},
@@ -28,5 +37,8 @@ const docThree: Resource<object> = {
 const docFour: Resource<string[]> = {
 	uid: 2,
 	resourceName: 'hello',
+	resourceType: resourceType.ARTIST,
 	data: ['hello', 'world'],
 }
+
+console.log(docFour)
