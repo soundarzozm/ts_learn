@@ -1,36 +1,39 @@
 import { Invoice } from './classes/invoice.js'
+import { Payment } from './classes/payment.js'
+import { HasFormatter } from './interfaces/HasFormatter.js'
 
-interface isPerson {
-	name: string
-	age: number
-	speak(a: string): void
-	spend(a: number): number
-}
+// Just making sure type is matching
+let docOne: HasFormatter
+let docTwo: HasFormatter
 
-const me: isPerson = {
-	name: 'mario',
-	age: 20,
-	speak(text: string): void {
-		console.log(text)
-	},
-	spend(amount: number): number {
-		console.log('I spent', amount)
-		return amount
-	},
-}
+// Both follow same interface so no problem
+docOne = new Invoice('yoshi', 'web work', 250)
+docTwo = new Payment('mario', 'plumbing work', 200)
 
-console.log(me)
+let docs: HasFormatter[] = []
+docs.push(docOne)
+docs.push(docTwo)
 
-const invOne = new Invoice('mario', 'work on the mario website', 250)
-const invTwo = new Invoice('luigi', 'work on the luigi website', 300)
+// Not allowed
+// docs.push(20)
 
-let invoices: Invoice[] = []
-invoices.push(invOne)
-invoices.push(invTwo)
+console.log(docs)
 
-invTwo.amount = 400
+const form = document.querySelector('.new-item-form') as HTMLFormElement
 
-invoices.forEach((inv) => {
-	console.log(inv.format())
-	console.log(inv.client)
+const type = document.querySelector('#type') as HTMLSelectElement
+const toFrom = document.querySelector('#tofrom') as HTMLInputElement
+const details = document.querySelector('#details') as HTMLInputElement
+const amount = document.querySelector('#amount') as HTMLInputElement
+
+form.addEventListener('submit', (e: Event) => {
+	e.preventDefault()
+
+	let doc: HasFormatter
+	if (type.value === 'invoice') {
+		doc = new Invoice(toFrom.value, details.value, amount.valueAsNumber)
+	} else {
+		doc = new Payment(toFrom.value, details.value, amount.valueAsNumber)
+	}
+	console.log(doc)
 })
