@@ -1,27 +1,32 @@
-import { Invoice } from './classes/Invoice.js'
-import { ListTemplete } from './classes/ListTemplate.js'
-import { Payment } from './classes/Payment.js'
-import { HasFormatter } from './interfaces/HasFormatter.js'
+// Using generic
+const addUID = <T extends { name: string }>(obj: T) => {
+	let uid = Math.floor(Math.random() * 100)
+	return { ...obj, uid }
+}
 
-const form = document.querySelector('.new-item-form') as HTMLFormElement
+let docOne = addUID({ name: 'yoshi', age: 40 })
+console.log(docOne.name)
 
-const type = document.querySelector('#type') as HTMLSelectElement
-const toFrom = document.querySelector('#tofrom') as HTMLInputElement
-const details = document.querySelector('#details') as HTMLInputElement
-const amount = document.querySelector('#amount') as HTMLInputElement
+// Works but should not be the case. Only objects should be allowed
+// <T extends object> solves this.
+// let docTwo = addUID('hello')
 
-const ul = document.querySelector('ul')!
-const list = new ListTemplete(ul)
+interface Resource<T> {
+	uid: number
+	resourceName: string
+	data: T // This can be any datatype
+}
 
-form.addEventListener('submit', (e: Event) => {
-	e.preventDefault()
+const docThree: Resource<object> = {
+	uid: 1,
+	resourceName: 'person',
+	data: {
+		name: 'shaun',
+	},
+}
 
-	let doc: HasFormatter
-	if (type.value === 'invoice') {
-		doc = new Invoice(toFrom.value, details.value, amount.valueAsNumber)
-	} else {
-		doc = new Payment(toFrom.value, details.value, amount.valueAsNumber)
-	}
-
-	list.render(doc, type.value, 'start')
-})
+const docFour: Resource<string[]> = {
+	uid: 2,
+	resourceName: 'hello',
+	data: ['hello', 'world'],
+}
